@@ -14,18 +14,18 @@ import org.springframework.stereotype.Component;
 import twitter4j.Status;
 import twitter4j.TwitterException;
 
-import com.aldaviva.t4e.service.TimelineDownloader;
+import com.aldaviva.t4e.service.TimelineService;
 
 @Path("/timeline")
 @Component
 public class TimelineResource {
 
-	@Autowired private TimelineDownloader timelineDownloader;
+	@Autowired private TimelineService timelineService;
 
 	@GET
 	@Produces({ "text/plain" })
 	public String timelineTsv() throws TwitterException{
-		final List<Status> statuses = timelineDownloader.downloadTimeline();
+		final List<Status> statuses = timelineService.getTimeline();
 		final StringBuilder responseStringBuilder = new StringBuilder();
 		for (final Status status : statuses) {
 			responseStringBuilder.append(status.getUser().getName());

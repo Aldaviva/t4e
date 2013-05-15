@@ -23,7 +23,7 @@ public class TimelineResource {
 	@Autowired private TimelineService timelineService;
 
 	@GET
-	@Produces({ "text/plain" })
+	@Produces({ "text/plain;charset=utf-8" })
 	public String timelineTsv() throws TwitterException{
 		final List<Status> statuses = timelineService.getTimeline();
 		final StringBuilder responseStringBuilder = new StringBuilder();
